@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=4 uid="uid://haay6jv5fjn"]
+
+[ext_resource type="Script" uid="uid://bat2jdjoe3qu0" path="res://player.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://berjivxyj0ddo" path="res://angelsprite.png" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://bk636arx0pgux" path="res://polygon_2d.gd" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b7kolbi48v340" path="res://Screenshot 2025-08-25 113807.png" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(123, 113)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bvp3"]
+texture = ExtResource("3_h2yge")
+margins = Vector2i(4, 3)
+separation = Vector2i(2, 2)
+texture_region_size = Vector2i(50, 50)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24.2724, -24.2724, 22.579, -24.2724, 23.1434, 24.8369, -23.1434, 24.8369)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-25.9658, -25.4013, 24.8368, -24.2724, 24.2724, 24.8369, -22.579, 24.2724)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.738, -24.8532, 19.5958, -24.5346, 23.4194, -15.9315, 23.738, 24.2159, -22.4635, 23.8973)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-22.3924, -22.6622, 23.1118, -22.6622, 23.2917, 24.6406, 1.88852, 24.8205, -22.3924, 24.8205)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.8313, -20.324, 22.0327, -20.5039, 22.3924, 24.4608, -16.0974, 23.7414, -23.1118, 18.3456)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24.191, -22.6622, 22.7521, -22.3025, 22.5723, 25.0004, -23.2917, 25.3601)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-25.6498, -23.26, 23.1007, -24.2159, 22.1448, 24.2159, -25.3311, 23.26)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.6514, -20.8636, 23.4716, -20.5039, 23.6514, 24.6406, -23.4716, 24.4608)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-22.3924, -20.5039, 23.1118, -20.6838, 23.1118, 18.5255, 16.0974, 24.1011, -21.3133, 24.4608)
+
+[sub_resource type="TileSet" id="TileSet_lquwl"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_1bvp3")
+
+[node name="Main" type="Node"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_0xm2m")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(250, 543)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
+position = Vector2(135, 552)
+speed_scale = 0.5
+particle_flag_align_y = true
+direction = Vector2(1, -1)
+spread = 167.27
+gravity = Vector2(0, -980)
+initial_velocity_min = 60.6
+initial_velocity_max = 111.11
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+color = Color(0.949395, 0.861041, 0.506606, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(135, 533)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(136, 540)
+scale = Vector2(1, 0.914063)
+texture = ExtResource("2_h2yge")
+
+[node name="Polygon2D" type="Polygon2D" parent="Player"]
+position = Vector2(205, 518)
+color = Color(0.447059, 0.980392, 0.956863, 0.113725)
+uv = PackedVector2Array(-165, -41, 37, -43, 106, 24, 105, 70, -222, 73, -222, 18)
+script = ExtResource("3_1bvp3")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAGACcAAAABAAAAAAAHACcAAAABAAAAAAAIACcAAAABAAAAAAAJACcAAAABAAAAAAAKACcAAAABAAAAAAANACcAAAABAAAAAAARACcAAAABAAAAAAAWACcAAAABAAAAAAAZACcAAAABAAAAAAAcACcAAAABAAAAAAAfACcAAAABAAAAAAAWACoAAAABAAEAAAAXACoAAAABAAEAAAAYACoAAAABAAEAAAAZACoAAAABAAEAAAAaACoAAAABAAEAAAAbACoAAAABAAEAAAAcACoAAAABAAEAAAAdACoAAAABAAEAAAAeACoAAAABAAEAAAAfACoAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_lquwl")
